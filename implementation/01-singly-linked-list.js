@@ -1,117 +1,112 @@
 // Node class is implemented for you, no need to look for bugs here!
 class SinglyLinkedNode {
-    constructor(val) {
-        this.value = val;
-        this.next = null;
-    }
+  constructor(val) {
+    this.value = val;
+    this.next = null;
+  }
 }
 
 class SinglyLinkedList {
-    constructor() {
-        this.head = null;
-        this.length = 0;
+  constructor() {
+    this.head = null;
+    this.length = 0;
+  }
+
+  addToHead(val) {
+    const newNode = new SinglyLinkedNode(val);
+
+    this.length++;
+
+    newNode.next = this.head;
+
+    this.head = newNode;
+
+    return this;
+    // Write your hypothesis on the time complexity of this method here
+  }
+
+  addToTail(val) {
+    // There are bugs in this method! Fix them!!!
+
+    // Add node of val to tail of linked list
+    let newNode = new SinglyLinkedNode(val);
+
+    if (!this.head) {
+      return this.addToHead(val);
     }
 
-    addToHead(val) {
-        const newNode = new SinglyLinkedNode(val);
+    this.length++;
+    let curr = this.head;
+    while (curr.next) {
+      curr = curr.next;
+    }
+    curr.next = newNode;
 
-        this.length++;
+    return this;
 
-        newNode.next = this.head;
+    // Write your hypothesis on the time complexity of this method here
+  }
 
-        this.head = newNode;
-
-        return this;
-        // Write your hypothesis on the time complexity of this method here
+  removeFromHead() {
+    if (!this.head) {
+      return;
     }
 
-    addToTail(val) {
-        // There are bugs in this method! Fix them!!!
+    let rmv = this.head;
+    this.head = this.head.next;
+    this.length--;
 
-        // Add node of val to tail of linked list
-        let newNode = new SinglyLinkedNode(val);
+    return rmv;
 
-        if(!this.head){
-            return this.addToHead(val);
-        }
+    // Write your hypothesis on the time complexity of this method here
+  }
 
-        this.length++;
-
-        let curr = this.head;
-
-        while (curr.next) {
-            curr = curr.next;
-        }
-
-        curr.next = newNode;
-
-        return this
-
-        // Write your hypothesis on the time complexity of this method here
+  removeFromTail() {
+    if (!this.head) {
+      return;
+    } else if (!this.head.next) {
+      return this.removeFromHead();
     }
 
-    removeFromHead() {
-        if(!this.head){
-            return
-        };
-
-        let rmv = this.head;
-
-        this.head = this.head.next;
-
-        this.length--;
-
-        return rmv;
-
-        // Write your hypothesis on the time complexity of this method here
+    let curr = this.head;
+    while (curr.next.next) {
+      curr = curr.next;
     }
 
-    removeFromTail() {
-        if(!this.head){
-            return
-        }else if(!this.head.next){
-            return this.removeFromHead();
-        };
+    let rmv = curr.next;
+    curr.next = null;
 
-        let curr = this.head;
+    this.length--;
+    return rmv;
 
-        while(curr.next.next){
-            curr = curr.next;
-        }
+    // Write your hypothesis on the time complexity of this method here
+  }
 
-        let rmv = curr.next
+  peekAtHead() {
+    if (!this.head) {
+      return;
+    }
+    return this.head.value;
+    // Write your hypothesis on the time complexity of this method here
+  }
 
-        curr.next = null;
+  print() {
+    if (!this.head) {
+      return;
+    }
+    let current = this.head;
 
-        this.length--;
-        return rmv;
-
-        // Write your hypothesis on the time complexity of this method here
+    while (current) {
+      console.log(`${current.value}`);
+      current = current.next;
     }
 
-    peekAtHead() {
-        if(!this.head){return};
-        return this.head.value
-        // Write your hypothesis on the time complexity of this method here
-    }
-
-    print() {
-        if(!this.head){
-            return
-        }
-        let current = this.head;
-
-        while (current) {
-          console.log(`${current.value}`);
-          current = current.next;
-        }
-
-        console.log('NULL')
-        // Write your hypothesis on the time complexity of this method here
-    }
+    console.log("NULL");
+    // Write your hypothesis on the time complexity of this method here
+  }
 }
 
 module.exports = {
-    SinglyLinkedList,
-    SinglyLinkedNode
-}
+  SinglyLinkedList,
+  SinglyLinkedNode,
+};
