@@ -42,6 +42,7 @@ class DoublyLinkedList {
 
         if (this.length > 0) {
             this.tail.next = newNode;
+            newNode.prev = this.tail;
             this.tail = newNode;
         } else {
             this.head = newNode;
@@ -74,7 +75,14 @@ class DoublyLinkedList {
         // Remove node at tail
 
         // Your code here
-        
+        if(!this.head){return};
+        this.length--;
+        let rmv = this.tail;
+        this.tail = this.tail.prev;
+        if(this.length > 0){
+            this.tail.next = null;
+        }
+        return rmv.value;
         // Write your hypothesis on the time complexity of this method here
     }
 
@@ -91,7 +99,8 @@ class DoublyLinkedList {
         // Return value of tail node
 
         // Your code here
-
+        if(!this.head){return};
+        return this.tail.value
         // Write your hypothesis on the time complexity of this method here
     }
 }

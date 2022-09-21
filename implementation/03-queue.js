@@ -12,7 +12,16 @@ class Queue {
         // Add node to end of queue (linked list)
 
         // Your code here
-
+        const newNode = new SinglyLinkedNode(val);
+        this.length++;
+        if(!this.tail){
+            this.head = newNode;
+            this.tail = newNode;
+            return this.length;
+        }
+        this.tail.next = newNode;
+        this.tail = newNode;
+        return this.length;
         // Write your hypothesis on the time complexity of this method here
     }
 
@@ -20,7 +29,19 @@ class Queue {
         // Remove node from front of queue (linked list)
 
         // Your code here
+        if(!this.head){
+            return null
+        };
 
+        let rmv = this.head;
+
+        this.head = this.head.next;
+        this.length--;
+        if(this.length === 0){
+            this.tail = null;
+        };
+
+        return rmv.value;
         // Write your hypothesis on the time complexity of this method here
     }
 
