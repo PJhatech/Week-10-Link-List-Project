@@ -16,10 +16,9 @@ class Queue {
         this.length++;
         if(!this.tail){
             this.head = newNode;
-            this.tail = newNode;
-            return this.length;
-        }
+        }else{
         this.tail.next = newNode;
+        }
         this.tail = newNode;
         return this.length;
         // Write your hypothesis on the time complexity of this method here
