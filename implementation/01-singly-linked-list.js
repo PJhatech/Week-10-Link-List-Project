@@ -13,16 +13,15 @@ class SinglyLinkedList {
     }
 
     addToHead(val) {
-        const newNode = new SinglyLinkedNode(val, null);
-        const newList = new SinglyLinkedList(val, this.head);
+        const newNode = new SinglyLinkedNode(val);
 
         this.length++;
 
         newNode.next = this.head;
 
         this.head = newNode;
-    
 
+        return this;
         // Write your hypothesis on the time complexity of this method here
     }
 
@@ -30,55 +29,80 @@ class SinglyLinkedList {
         // There are bugs in this method! Fix them!!!
 
         // Add node of val to tail of linked list
-        let newNode = new SinglyLinkedNode(val, null);
+        let newNode = new SinglyLinkedNode(val);
 
-        if (!this.tail) {
-            this.tail = newNode;
-        }else {
-        let curr = head;
+        if(!this.head){
+            return this.addToHead(val);
+        }
+
+        this.length++;
+
+        let curr = this.head;
 
         while (curr.next) {
-            curr = current.next;
+            curr = curr.next;
         }
+
         curr.next = newNode;
-        }
-        return head;
+
+        return this
 
         // Write your hypothesis on the time complexity of this method here
     }
 
     removeFromHead() {
-        // Remove node at head
+        if(!this.head){
+            return
+        };
 
-        // Your code here
+        let rmv = this.head;
+
+        this.head = this.head.next;
+
+        this.length--;
+
+        return rmv;
 
         // Write your hypothesis on the time complexity of this method here
     }
 
     removeFromTail() {
-        // Remove node at tail
+        if(!this.head){
+            return
+        }else if(!this.head.next){
+            return this.removeFromHead();
+        };
 
-        // Your code here
+        let curr = this.head;
+
+        while(curr.next.next){
+            curr = curr.next;
+        }
+
+        let rmv = curr.next
+
+        curr.next = null;
+
+        this.length--;
+        return rmv;
 
         // Write your hypothesis on the time complexity of this method here
     }
 
     peekAtHead() {
-        // Return value of head node
-
-        // Your code here
-
+        if(!this.head){return};
+        return this.head.value
         // Write your hypothesis on the time complexity of this method here
     }
 
     print() {
-        // Print out the linked list
-
-        // Your code here
+        if(!this.head){
+            return
+        }
         let current = this.head;
 
         while (current) {
-          process.stdout.write(`${current.value} <-> `);
+          console.log(`${current.value}`);
           current = current.next;
         }
 
